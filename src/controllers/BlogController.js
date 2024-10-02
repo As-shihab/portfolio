@@ -41,3 +41,4 @@ const GetOneBlog = async(req, res)=>{
 }
 
 module.exports = {CreateBlog ,DeleteBlog, GetBlogs , PutBlogs , GetOneBlog}
+
