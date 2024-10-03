@@ -1,5 +1,5 @@
 const express = require('express')
-const { CreateBlog, GetBlogs, PutBlogs, DeleteBlog , GetOneBlog} = require('../controllers/BlogController')
+const { CreateBlog, GetBlogs, PutBlogs, DeleteBlog , GetOneBlog, GetPined, MakePined} = require('../controllers/BlogController')
 const {CreateGuyst , GetGuyst  , UpdateGuyst , DeleteGuyst , IsGuyst, GetCode, VerifyCode, LoginGuyst} = require('../controllers/GuystController')
 const shihab = express.Router()
 const multer = require('multer')
@@ -23,8 +23,10 @@ const upload = multer({ storage: storage })
 shihab.post('/blog', upload.array('blogfile'),Cloud, CreateBlog)
 shihab.get('/blogs', GetBlogs)
 shihab.put('/blog', PutBlogs)
-shihab.delete('/blog', DeleteBlog)
+shihab.delete('/blog/:id', DeleteBlog)
 shihab.get('/blog/:id' , GetOneBlog)
+shihab.get('/pinedblog' , GetPined)
+shihab.put('/makepined/:id' , MakePined)
 
 // guyst router
 
