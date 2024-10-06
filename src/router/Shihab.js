@@ -6,6 +6,8 @@ const multer = require('multer')
 const path = require('path')
 const VerifyUser = require('./middleware/UserMiddleware')
 const Cloud  = require('../cloud/gcloud')
+const DelGfile = require('../cloud/DelFile')
+const { NewProject, GetAllProject } = require('../controllers/ProjectController')
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "Uploads")
@@ -23,7 +25,7 @@ const upload = multer({ storage: storage })
 shihab.post('/blog', upload.array('blogfile'),Cloud, CreateBlog)
 shihab.get('/blogs', GetBlogs)
 shihab.put('/blog', PutBlogs)
-shihab.delete('/blog/:id', DeleteBlog)
+shihab.delete('/blog/:id',DelGfile, DeleteBlog)
 shihab.get('/blog/:id' , GetOneBlog)
 shihab.get('/pinedblog' , GetPined)
 shihab.put('/makepined/:id' , MakePined)
@@ -43,13 +45,11 @@ shihab.post('/guyst/login' , LoginGuyst)
 
 
 
-shihab.post("/upload" , upload.array('file'), Cloud, async(req,res)=>{
- 
-    return res.json(req.files)
 
-})
+// project routers
 
-
+shihab.post('/project/newproject', upload.array('photos') , Cloud , NewProject )
+shihab.get('/project/getprojects' , GetAllProject)
 
 module.exports = shihab
 

@@ -5,9 +5,10 @@ const DB = mongoose.connect(`mongodb+srv://${process.env.MONGOUSER}:${process.en
     console.log('Mongodb Connected'+res)
 })
 .catch((err)=>{
-    console.log("Somthing went error to connect db" + err)
+    console.log("Somthing went error to connect  db  " + err.message)
 })
 
 
 module.exports = DB;
+
 

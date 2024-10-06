@@ -50,9 +50,13 @@ const Cloud = async (req, res, next) => {
 
             })
             UploadedFile.push(cloud.data)
+             req.cloud = cloud.data
 
         }
           req.imgid= UploadedFile[0].id
+         
+          
+          
        next()
 
     }

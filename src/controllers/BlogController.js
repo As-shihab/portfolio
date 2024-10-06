@@ -29,6 +29,10 @@ const PutBlogs = async () =>{
 const DeleteBlog = async (req,res) =>{
 const {id} =req.params;
 try{
+
+       
+
+
    await BlogModel.deleteOne({_id: id})
    .then(result=>{
       return res.json({
@@ -87,7 +91,7 @@ const MakePined = async(req,res) =>{
             .then(data=>{
                return res.json({
                     data: data,
-                    msg: "Pined Blogs"
+                    msg: "Unpined Blog"
                })
             })
             .catch(error=>{
@@ -102,7 +106,7 @@ const MakePined = async(req,res) =>{
             .then(data=>{
                return res.json({
                     data: data,
-                    msg: "Unpined Blog"
+                    msg: "Pined blog"
                })
             })
             .catch(error=>{
