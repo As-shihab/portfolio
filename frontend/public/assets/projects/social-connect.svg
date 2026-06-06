@@ -1,0 +1,16 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9D174D"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="300" cy="280" r="110" fill="white" fill-opacity="0.2"/>
+  <circle cx="600" cy="250" r="110" fill="white" fill-opacity="0.2"/>
+  <circle cx="900" cy="320" r="110" fill="white" fill-opacity="0.2"/>
+  <path d="M390 280H510" stroke="#FDF2F8" stroke-width="14" stroke-linecap="round"/>
+  <path d="M690 280H810" stroke="#FDF2F8" stroke-width="14" stroke-linecap="round"/>
+  <rect x="240" y="460" width="720" height="160" rx="22" fill="white" fill-opacity="0.14"/>
+  <text x="600" y="735" fill="#FCE7F3" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700" text-anchor="middle">Social Connect</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4C1D95"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="210" y="170" width="780" height="460" rx="40" fill="white" fill-opacity="0.15"/>
+  <polyline points="250,430 370,380 470,450 600,300 740,370 840,320 930,350" stroke="#F5F3FF" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="600" cy="300" r="24" fill="#C4B5FD"/>
+  <text x="600" y="725" fill="#F5F3FF" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700" text-anchor="middle">Fitness Tracker</text>
+</svg>

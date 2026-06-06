@@ -1,0 +1,77 @@
+<section class="py-24 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 mb-4 inline-block">
+                Problem Solving
+            </h2>
+            <div class="w-24 h-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 mx-auto rounded-full"></div>
+            <p class="mt-4 text-lg text-secondary dark:text-gray-300 max-w-2xl mx-auto">
+                My journey through algorithms, data structures, and competitive programming.
+            </p>
+        </div>
+
+        <!-- Profiles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            @for (profile of profiles; track profile.name) {
+            <div
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group">
+                <!-- Card Header -->
+                <div
+                    class="p-6 flex flex-col items-center border-b border-gray-100 dark:border-gray-700 relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 {{profile.bgColor}} opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+
+                    <!-- Icon/Logo Placeholder -->
+                    <div
+                        class="w-20 h-20 rounded-2xl bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mb-4 relative z-10 transform group-hover:scale-110 transition-transform duration-300">
+                        @if (profile.icon === 'leetcode') {
+                        <svg class="w-12 h-12 text-yellow-500" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
+                        </svg>
+                        } @else if (profile.icon === 'hackerrank') {
+                        <svg class="w-12 h-12 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.14 17.478h-2.22v-5.94l-2.46 2.52-1.56-1.56 4.02-4.02 4.02 4.02-1.56 1.56-2.46-2.52v5.94h2.22v-5.94l2.46 2.52 1.56-1.56-4.02-4.02-4.02 4.02 1.56 1.56 2.46-2.52v5.94z" />
+                        </svg>
+                        } @else {
+                        <svg class="w-12 h-12 text-orange-700" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 2.6l7.9 4.5v9.8L12 21.4 4.1 16.9V7.1L12 2.6z" />
+                        </svg>
+                        }
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-primary dark:text-white relative z-10">{{ profile.name }}</h3>
+                    <a [href]="profile.url" target="_blank"
+                        class="text-sm {{profile.color}} font-medium hover:underline mt-1 relative z-10">{{
+                        profile.username }}</a>
+                </div>
+
+                <!-- Stats -->
+                <div class="p-6">
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        @for (stat of profile.stats; track stat.label) {
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-primary dark:text-white">{{ stat.value }}</p>
+                            <p class="text-xs text-secondary dark:text-gray-400 uppercase tracking-wide">{{ stat.label }}
+                            </p>
+                        </div>
+                        }
+                    </div>
+
+                    <a [href]="profile.url" target="_blank"
+                        class="block w-full py-3 text-center rounded-xl bg-gray-50 dark:bg-gray-700 text-secondary dark:text-gray-200 font-semibold hover:bg-brand hover:text-white dark:hover:bg-brand transition-colors duration-300">
+                        View Profile
+                    </a>
+                </div>
+            </div>
+            }
+        </div>
+
+
+    </div>
+</section>

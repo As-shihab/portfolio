@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .text-primary {
+    @apply text-slate-900 dark:text-slate-100;
+  }
+
+  .text-secondary {
+    @apply text-slate-600 dark:text-slate-400;
+  }
+
+  .text-brand {
+    @apply text-emerald-600 dark:text-emerald-400;
+  }
+
+  .bg-brand {
+    @apply bg-emerald-600 dark:bg-emerald-500;
+  }
+
+  .bg-brand-light {
+    @apply bg-emerald-50 dark:bg-emerald-900/20;
+  }
+
+  .border-brand {
+    @apply border-emerald-600 dark:border-emerald-500;
+  }
+
+  .btn-brand {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white transition-all duration-300 rounded-full shadow-lg bg-emerald-600 hover:bg-emerald-700 hover:shadow-xl hover:-translate-y-1 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-slate-700 dark:text-white transition-all duration-300 rounded-full shadow-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 hover:shadow-lg hover:-translate-y-1 cursor-pointer;
+  }
+
+  .section-title {
+    @apply text-3xl font-extrabold text-slate-900 dark:text-slate-100 sm:text-4xl;
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border border-white/20 dark:border-white/10;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-slate-950 font-sans text-slate-600 dark:text-slate-400;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-slate-900 dark:text-slate-100;
+  }
+}

@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+.skills-mesh {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.16), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.13), transparent 38%),
+    linear-gradient(160deg, #f8fafc 0%, #ecfeff 45%, #f0fdfa 100%);
+}
+
+.panel-card {
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.88), rgba(241, 245, 249, 0.92));
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  backdrop-filter: blur(10px);
+}
+
+.stat-card {
+  border: 1px solid rgba(20, 184, 166, 0.28);
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-label {
+  color: #94a3b8;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.stat-value {
+  color: #0f172a;
+  font-size: 1.65rem;
+  font-weight: 800;
+  margin-top: 0.35rem;
+}
+
+.skill-bar {
+  position: relative;
+  transition: width 4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.skill-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: translateX(-100%);
+  animation: shine 2.4s ease-in-out infinite;
+}
+
+@keyframes shine {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+:host-context(.dark) .skills-mesh {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(52, 211, 153, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.14), transparent 38%),
+    linear-gradient(160deg, #020617 0%, #0b1224 45%, #061922 100%);
+}
+
+:host-context(.dark) .panel-card {
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: linear-gradient(160deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.82));
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.45);
+}
+
+:host-context(.dark) .stat-card {
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  background: rgba(15, 23, 42, 0.68);
+}
+
+:host-context(.dark) .stat-value {
+  color: #f8fafc;
+}
