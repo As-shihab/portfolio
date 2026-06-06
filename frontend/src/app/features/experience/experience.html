@@ -1,0 +1,82 @@
+<section id="experience" class="experience-shell relative overflow-hidden py-16 md:py-24">
+    <div class="absolute inset-0 experience-backdrop"></div>
+    <div class="absolute -top-24 -left-12 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl"></div>
+
+    <div class="container relative z-10 mx-auto px-4">
+        <div class="mx-auto max-w-4xl text-center">
+            <span class="eyebrow">Experience</span>
+            <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl md:text-6xl">
+                ERP, MES, and
+                <span class="bg-gradient-to-r from-emerald-600 via-cyan-500 to-teal-500 bg-clip-text text-transparent dark:from-emerald-300 dark:via-cyan-300 dark:to-teal-300">Industrial Software Work</span>
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-slate-600 dark:text-slate-300">
+                A focused timeline of ERP-MES modules, Electron desktop systems, SAP-standard workflows, backend APIs, and real-time machine monitoring work.
+            </p>
+        </div>
+
+        <div class="timeline-wrap relative mx-auto mt-16 max-w-6xl">
+            <div class="timeline-rail absolute left-5 top-0 bottom-0 w-px md:left-1/2 md:-translate-x-1/2"></div>
+
+            <div class="space-y-10 md:space-y-14">
+                @for (exp of experience(); track exp.id; let i = $index) {
+                <article class="timeline-row relative grid grid-cols-1 md:grid-cols-2 md:gap-10">
+                    <div class="timeline-dot absolute left-5 top-8 -translate-x-1/2 md:left-1/2"></div>
+
+                    @if (i % 2 === 0) {
+                    <div class="hidden md:block md:pr-14"></div>
+                    }
+
+                    <div class="timeline-card md:max-w-xl">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="date-pill">{{ exp.startDate }} - {{ exp.endDate }}</span>
+                            @if (isCurrentRole(exp.endDate)) {
+                            <span class="live-pill">Current</span>
+                            }
+                        </div>
+
+                        <h3 class="mt-4 text-2xl font-bold text-slate-900 dark:text-white">{{ exp.role }}</h3>
+
+                        <p class="mt-2 inline-flex items-center gap-2 font-medium text-emerald-700 dark:text-emerald-300">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1" />
+                            </svg>
+                            {{ exp.company }}
+                        </p>
+
+                        <p class="mt-1 inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            {{ exp.location }}
+                        </p>
+
+                        <ul class="mt-5 space-y-3">
+                            @for (desc of exp.description; track desc) {
+                            <li class="flex items-start gap-3 text-slate-600 dark:text-slate-300">
+                                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                                <span>{{ desc }}</span>
+                            </li>
+                            }
+                        </ul>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            @for (tech of exp.technologies; track tech) {
+                            <span class="tech-chip">{{ tech }}</span>
+                            }
+                        </div>
+                    </div>
+
+                    @if (i % 2 !== 0) {
+                    <div class="hidden md:block md:pl-14"></div>
+                    }
+                </article>
+                }
+            </div>
+        </div>
+    </div>
+</section>

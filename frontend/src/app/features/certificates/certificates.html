@@ -1,0 +1,53 @@
+<section class="py-20 bg-gray-50 dark:bg-gray-900" id="certificates">
+    <div class="container mx-auto px-4">
+        <h2
+            class="text-3xl md:text-4xl font-bold text-center text-primary dark:text-white mb-12 relative inline-block left-1/2 transform -translate-x-1/2">
+            Certifications
+            <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-brand rounded-full"></span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for (cert of certificates(); track cert.id) {
+            <div
+                class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col h-full transform hover:-translate-y-2">
+                <div class="h-48 overflow-hidden bg-gray-100 dark:bg-gray-700 relative group">
+                    @if (cert.imageUrl) {
+                    <img [src]="cert.imageUrl" [alt]="cert.issuer"
+                        class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    } @else {
+                    <div class="w-full h-full flex items-center justify-center">
+                        <span class="text-4xl font-bold text-gray-400">{{ cert.issuer.charAt(0) }}</span>
+                    </div>
+                    }
+                    <div
+                        class="absolute inset-0 bg-black/60 dark:bg-black/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                        <a [href]="cert.credentialUrl" target="_blank" rel="noopener noreferrer"
+                            class="px-6 py-2 rounded-full font-semibold transition transform scale-90 group-hover:scale-100 bg-white/95 text-slate-900 ring-1 ring-black/10 shadow-md hover:bg-emerald-600 hover:text-white dark:bg-slate-900/90 dark:text-slate-100 dark:ring-white/20 dark:hover:bg-emerald-500 dark:hover:text-white">
+                            Verify Credential
+                        </a>
+                    </div>
+                </div>
+
+                <div class="p-6 flex-grow flex flex-col">
+                    <div class="mb-4">
+                        <span
+                            class="inline-block px-3 py-1 bg-brand-light dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 text-xs font-semibold rounded-full mb-2">
+                            {{ cert.issuer }}
+                        </span>
+                        <h3 class="text-xl font-bold text-primary dark:text-white leading-tight mb-2">{{ cert.title }}
+                        </h3>
+                        <p class="text-sm text-secondary dark:text-gray-400 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            Issued: {{ cert.date }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

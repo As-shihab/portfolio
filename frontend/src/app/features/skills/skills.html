@@ -1,0 +1,52 @@
+<section class="relative overflow-hidden py-16 md:py-24" id="skills">
+    <div class="absolute inset-0 skills-mesh"></div>
+    <div class="absolute -top-28 -left-16 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl"></div>
+
+    <div class="container relative z-10 mx-auto px-4">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                @for (category of categories; track category) {
+                @if (getSkillsByCategory(category).length > 0) {
+                <div class="panel-card">
+                    <div class="mb-5 flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ category }}</h3>
+                        <span
+                            class="rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                            Avg {{ getDisplayValue(getAverageByCategory(category)) }}%
+                        </span>
+                    </div>
+
+                    <div class="space-y-4">
+                        @for (skill of getSkillsByCategory(category); track skill.id) {
+                        <div
+                            class="rounded-xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-slate-900/40 p-4">
+                            <div class="mb-2 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    @if (skill.icon) {
+                                    <img [src]="skill.icon" [alt]="skill.name" class="h-6 w-6 shrink-0" />
+                                    }
+                                    <p class="truncate font-semibold text-slate-800 dark:text-slate-100">{{ skill.name
+                                        }}</p>
+                                </div>
+                                <div class="text-right shrink-0">
+                                    <p class="text-sm font-bold text-cyan-700 dark:text-cyan-300">{{
+                                        getDisplayValue(skill.proficiency)
+                                        }}%</p>
+                                    <p class="text-[11px] uppercase tracking-wide text-slate-500 dark:text-slate-400">{{
+                                        getSkillTone(skill.proficiency) }}</p>
+                                </div>
+                            </div>
+                            <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                                <div class="skill-bar h-full rounded-full bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-400"
+                                    [style.width.%]="isViewed() ? skill.proficiency : 0"
+                                    [style.transition-delay.ms]="$index * 150"></div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+                }
+        </div>
+    </div>
+</section>

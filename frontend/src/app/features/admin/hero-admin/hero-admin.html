@@ -1,0 +1,70 @@
+<div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md">
+    <h2 class="text-2xl font-bold text-primary dark:text-white mb-6">Hero Section Management</h2>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="loading" class="mb-4 p-4 bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 rounded-lg">
+        Loading...
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="mb-4 p-4 bg-red-50 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
+        {{ error }}
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="success" class="mb-4 p-4 bg-green-50 dark:bg-green-900 text-green-700 dark:text-green-200 rounded-lg">
+        {{ success }}
+    </div>
+
+    <form (ngSubmit)="saveHero()" class="space-y-6">
+        <div>
+            <label class="block text-sm font-medium text-secondary dark:text-gray-300 mb-1">Greeting</label>
+            <input [(ngModel)]="heroData.greeting" name="greeting" required
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-secondary dark:text-gray-300 mb-1">Name</label>
+            <input [(ngModel)]="heroData.name" name="name" required
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-secondary dark:text-gray-300 mb-1">Title/Role</label>
+            <input [(ngModel)]="heroData.title" name="title" required
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-secondary dark:text-gray-300 mb-1">Description</label>
+            <textarea [(ngModel)]="heroData.description" name="description" rows="4" required
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-secondary dark:text-gray-300 mb-1">Hero Image</label>
+
+            <div *ngIf="currentImageUrl" class="mb-4">
+                <img [src]="'https://localhost:7085/' + currentImageUrl" alt="Current Hero Image"
+                    class="w-32 h-32 object-cover rounded-lg border border-gray-300 dark:border-gray-600">
+                <p class="text-xs text-gray-500 mt-1">Current Image</p>
+            </div>
+
+            <input type="file" (change)="onFileSelected($event)" accept="image/*"
+                class="block w-full text-sm text-gray-500 dark:text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand-light/80 dark:file:bg-gray-700 dark:file:text-white">
+            <p class="mt-1 text-xs text-gray-500">Supported formats: PNG, JPG, JPEG (Max 5MB)</p>
+        </div>
+
+        <div class="flex gap-4">
+            <button type="submit" [disabled]="loading"
+                class="px-6 py-2 bg-brand text-white rounded-lg hover:bg-emerald-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                {{ heroId ? 'Update' : 'Create' }} Hero Section
+            </button>
+
+            <button type="button" *ngIf="heroId" (click)="deleteHero()" [disabled]="loading"
+                class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Delete
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,82 @@
+<nav class="bg-white dark:bg-gray-800 shadow-md fixed top-0 left-0 w-full z-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <a href="#home" (click)="scrollToSection('home', $event)" class="text-2xl font-bold text-brand dark:text-emerald-400">
+             SHIHAB
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-5 text-sm lg:space-x-7 lg:text-base">
+                @for (item of navItems; track item.id) {
+                <a [href]="'#' + item.id" (click)="scrollToSection(item.id, $event)" [class]="linkClass(item.id)">
+                    {{ item.label }}
+                </a>
+                }
+                <button
+                    type="button"
+                    (click)="toggleTheme()"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 bg-slate-100 text-slate-700 transition hover:bg-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                    [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                    @if (isDarkMode) {
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                    } @else {
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z" />
+                    </svg>
+                    }
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button (click)="toggleMobileMenu()" class="text-secondary dark:text-gray-300 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        @if (!isMobileMenuOpen) {
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                        } @else {
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                        }
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isMobileMenuOpen) {
+    <div class="md:hidden bg-white dark:bg-gray-800 shadow-lg absolute top-16 left-0 w-full z-40">
+        <div class="flex flex-col px-4 py-2 space-y-2">
+            <button
+                type="button"
+                (click)="toggleTheme()"
+                class="flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-secondary dark:text-gray-200 bg-gray-50 dark:bg-gray-700"
+                [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                <span>Theme</span>
+                @if (isDarkMode) {
+                <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+                } @else {
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z" />
+                </svg>
+                }
+            </button>
+            @for (item of navItems; track item.id) {
+            <a [href]="'#' + item.id" (click)="scrollToSection(item.id, $event)" [class]="mobileLinkClass(item.id)">
+                {{ item.label }}
+            </a>
+            }
+        </div>
+    </div>
+    }
+</nav>
