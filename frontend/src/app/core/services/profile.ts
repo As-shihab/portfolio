@@ -6,6 +6,7 @@ export interface Profile {
   title: string;
   bio: string;
   email: string;
+  phone: string;
   location: string;
   avatarUrl: string;
   socialLinks: { platform: string; url: string }[];
@@ -22,6 +23,7 @@ export class ProfileService {
     title: 'Software Developer',
     bio: `Software Developer focused on ERP and MES products, Electron desktop systems, Angular and React frontends, and backend services with Node.js, Laravel, NestJS, Prisma, and OData v4.`,
     email: 'study.shihab@gmail.com',
+    phone: '+880 1604-279418',
     location: 'Dhaka, Bangladesh',
     avatarUrl: 'assets/shihab.jpg',
     socialLinks: [

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +9,14 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 export class NavbarComponent implements AfterViewInit, OnDestroy {
   isDarkMode = true;
   isMobileMenuOpen = false;
+  isScrolled = false;
   activeSection = 'home';
   readonly navItems = [
-    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'videos', label: 'Videos' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'projects', label: 'Work' },
     { id: 'experience', label: 'Experience' },
+    { id: 'videos', label: 'Videos' },
     { id: 'contact', label: 'Contact' },
   ];
   private observer?: IntersectionObserver;
@@ -32,6 +32,11 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
       this.observeSections();
       this.scrollToInitialHash();
     });
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.isScrolled = window.scrollY > 24;
   }
 
   ngOnDestroy(): void {
@@ -69,23 +74,11 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const top = section.getBoundingClientRect().top + window.scrollY - 72;
+    const top = section.getBoundingClientRect().top + window.scrollY - 88;
     window.scrollTo({ top, behavior: 'smooth' });
     history.replaceState(null, '', sectionId === 'home' ? window.location.pathname : `#${sectionId}`);
     this.activeSection = sectionId;
     this.closeMobileMenu();
-  }
-
-  linkClass(sectionId: string): string {
-    const base = 'text-secondary dark:text-gray-300 hover:text-brand dark:hover:text-emerald-400 transition';
-    const active = 'text-brand dark:text-emerald-400 font-semibold';
-    return this.activeSection === sectionId ? `${base} ${active}` : base;
-  }
-
-  mobileLinkClass(sectionId: string): string {
-    const base = 'block px-3 py-2 rounded-md text-base font-medium text-secondary dark:text-gray-200 hover:text-brand dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition';
-    const active = 'text-brand dark:text-emerald-400 bg-emerald-50 dark:bg-gray-700';
-    return this.activeSection === sectionId ? `${base} ${active}` : base;
   }
 
   private observeSections(): void {
@@ -106,8 +99,8 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
       }
     );
 
-    this.navItems.forEach((item) => {
-      const section = document.getElementById(item.id);
+    ['home', ...this.navItems.map((item) => item.id)].forEach((id) => {
+      const section = document.getElementById(id);
       if (section) {
         this.observer?.observe(section);
       }
@@ -116,7 +109,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
   private scrollToInitialHash(): void {
     const sectionId = window.location.hash.replace('#', '');
-    if (sectionId && this.navItems.some((item) => item.id === sectionId)) {
+    if (sectionId && document.getElementById(sectionId)) {
       this.scrollToSection(sectionId);
     }
   }

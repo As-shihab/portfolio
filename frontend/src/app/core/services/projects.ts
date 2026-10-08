@@ -22,64 +22,44 @@ export class ProjectsService {
 
   private projects: Project[] = [
     {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-featured e-commerce solution with product management, shopping cart, and secure checkout.',
-      imageUrl: 'assets/projects/ecommerce-platform.svg',
-      technologies: ['Angular', 'ASP.NET Core', 'SQL Server'],
-      demoUrl: 'https://ecommerce.example.com',
-      githubUrl: 'https://github.com/username/ecommerce',
-      category: 'Website'
-    },
-    {
       id: 2,
-      title: 'Task Master App',
-      description: 'A productivity mobile application for managing daily tasks and team collaboration.',
-      imageUrl: 'assets/projects/task-master-app.svg',
-      technologies: ['React Native', 'Node.js', 'MongoDB'],
-      demoUrl: 'https://taskmaster.example.com',
-      githubUrl: 'https://github.com/username/task-master',
-      category: 'Mobile'
+      title: 'ShiftVisu',
+      description: 'Shows production errors and machine failures across halls and plants as they happen, so supervisors can react quickly.',
+      imageUrl: '',
+      technologies: ['Angular', 'Node.js', 'WebSocket', 'Modbus'],
+      category: 'Other'
     },
     {
       id: 3,
-      title: 'Corporate CRM',
-      description: 'Customer Relationship Management system for tracking leads and sales pipelines.',
-      imageUrl: 'assets/projects/corporate-crm.svg',
-      technologies: ['Laravel', 'Vue.js', 'MySQL'],
-      demoUrl: 'https://crm.example.com',
-      githubUrl: 'https://github.com/username/corporate-crm',
-      category: 'Website'
+      title: 'Offline-first Desktop ERP',
+      description: 'A desktop ERP that keeps working when the internet drops and syncs everything back when it returns.',
+      imageUrl: '',
+      technologies: ['Electron', 'React', 'SAP UI5', 'SQLite'],
+      category: 'Desktop'
     },
     {
       id: 4,
-      title: 'Social Connect',
-      description: 'Real-time social networking platform with chat and media sharing capabilities.',
-      imageUrl: 'assets/projects/social-connect.svg',
-      technologies: ['React.js', 'Firebase', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/username/social-connect',
-      demoUrl: 'https://social.example.com',
+      title: 'Bandab Textile MES-ERP',
+      description: 'An ERP with MES built in for a textile company, so the office and the shop floor share the same data.',
+      imageUrl: '',
+      technologies: ['React', 'Laravel', 'NestJS', 'Tailwind CSS'],
       category: 'Website'
     },
     {
       id: 5,
-      title: 'Fitness Tracker',
-      description: 'Mobile app for tracking workouts, nutrition, and personal health goals.',
-      imageUrl: 'assets/projects/fitness-tracker.svg',
-      technologies: ['React Native', 'Redux', 'Express.js'],
-      githubUrl: 'https://github.com/username/fitness-tracker',
-      demoUrl: 'https://fitness-tracker.example.com',
-      category: 'Mobile'
+      title: 'Shopfloor ERP (Italy)',
+      description: 'Production and shop floor workflows for a manufacturer in Italy, built through SCT Bangla.',
+      imageUrl: '',
+      technologies: ['Angular', 'SAP UI5', 'Node.js', 'WebSocket'],
+      category: 'Website'
     },
     {
       id: 6,
-      title: 'Server Management Tool',
-      description: 'Web-based dashboard for monitoring and managing VPS instances.',
-      imageUrl: 'assets/projects/server-management-tool.svg',
-      technologies: ['Angular', 'Node.js', 'Docker'],
-      githubUrl: 'https://github.com/username/vps-manager',
-      demoUrl: 'https://vps-manager.example.com',
-      category: 'Website'
+      title: 'ERP Service Layer',
+      description: 'The OData v4 services and real-time channels the ERP apps talk to.',
+      imageUrl: '',
+      technologies: ['Supabase', 'NestJS', 'OData v4', 'Prisma', 'MySQL'],
+      category: 'Other'
     }
   ];
 

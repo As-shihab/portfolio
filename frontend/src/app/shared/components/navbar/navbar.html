@@ -1,82 +1,73 @@
-<nav class="bg-white dark:bg-gray-800 shadow-md fixed top-0 left-0 w-full z-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <a href="#home" (click)="scrollToSection('home', $event)" class="text-2xl font-bold text-brand dark:text-emerald-400">
-             SHIHAB
-            </a>
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+    [class]="isScrolled || isMobileMenuOpen
+        ? 'border-b border-stone-200 bg-stone-50/85 backdrop-blur-xl dark:border-white/10 dark:bg-stone-950/80'
+        : 'border-b border-transparent'">
+    <nav class="shell flex h-16 items-center justify-between">
+        <a href="#home" (click)="scrollToSection('home', $event)"
+            class="font-serif text-2xl text-stone-900 dark:text-white">
+            Shihab
+        </a>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-5 text-sm lg:space-x-7 lg:text-base">
-                @for (item of navItems; track item.id) {
-                <a [href]="'#' + item.id" (click)="scrollToSection(item.id, $event)" [class]="linkClass(item.id)">
-                    {{ item.label }}
-                </a>
-                }
-                <button
-                    type="button"
-                    (click)="toggleTheme()"
-                    class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 bg-slate-100 text-slate-700 transition hover:bg-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-                    [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
-                    @if (isDarkMode) {
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                    </svg>
-                    } @else {
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z" />
-                    </svg>
-                    }
-                </button>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden flex items-center">
-                <button (click)="toggleMobileMenu()" class="text-secondary dark:text-gray-300 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        @if (!isMobileMenuOpen) {
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                        } @else {
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                        }
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    @if (isMobileMenuOpen) {
-    <div class="md:hidden bg-white dark:bg-gray-800 shadow-lg absolute top-16 left-0 w-full z-40">
-        <div class="flex flex-col px-4 py-2 space-y-2">
-            <button
-                type="button"
-                (click)="toggleTheme()"
-                class="flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-secondary dark:text-gray-200 bg-gray-50 dark:bg-gray-700"
-                [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
-                <span>Theme</span>
-                @if (isDarkMode) {
-                <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                </svg>
-                } @else {
-                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z" />
-                </svg>
-                }
-            </button>
+        <div class="hidden items-center gap-7 md:flex">
             @for (item of navItems; track item.id) {
-            <a [href]="'#' + item.id" (click)="scrollToSection(item.id, $event)" [class]="mobileLinkClass(item.id)">
+            <a [href]="'#' + item.id" (click)="scrollToSection(item.id, $event)"
+                class="text-sm transition-colors"
+                [class]="activeSection === item.id
+                    ? 'text-stone-900 dark:text-white'
+                    : 'text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white'">
                 {{ item.label }}
             </a>
             }
+            <button type="button" (click)="toggleTheme()" class="icon-btn -mr-2 h-9 w-9"
+                [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                @if (isDarkMode) {
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+                } @else {
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z" />
+                </svg>
+                }
+            </button>
         </div>
+
+        <div class="flex items-center gap-1 md:hidden">
+            <button type="button" (click)="toggleTheme()" class="icon-btn h-9 w-9"
+                [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                @if (isDarkMode) {
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.36 6.36-.7-.7M6.34 6.34l-.7-.7m12.72 0-.7.7M6.34 17.66l-.7.7M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+                } @else {
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 118.646 3.646 7 7 0 0020.354 15.354z" />
+                </svg>
+                }
+            </button>
+            <button type="button" (click)="toggleMobileMenu()" class="icon-btn h-9 w-9"
+                [attr.aria-expanded]="isMobileMenuOpen" aria-label="Toggle menu">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    @if (!isMobileMenuOpen) {
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                    } @else {
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    }
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    @if (isMobileMenuOpen) {
+    <div class="shell animate-fade-up pb-6 md:hidden">
+        @for (item of navItems; track item.id) {
+        <a [href]="'#' + item.id" (click)="scrollToSection(item.id, $event)"
+            class="block border-b border-stone-200 py-3 font-serif text-2xl text-stone-900 dark:border-white/10 dark:text-white">
+            {{ item.label }}
+        </a>
+        }
     </div>
     }
-</nav>
+</header>

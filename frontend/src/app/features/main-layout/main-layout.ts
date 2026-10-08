@@ -7,9 +7,9 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar';
   selector: 'app-main-layout',
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
   template: `
-    <div class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+    <div class="flex min-h-screen flex-col overflow-x-clip">
       <app-navbar></app-navbar>
-      <main class="flex-grow w-full pt-16">
+      <main class="w-full flex-grow">
         <router-outlet></router-outlet>
       </main>
       <app-footer></app-footer>

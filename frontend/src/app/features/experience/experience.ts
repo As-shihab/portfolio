@@ -1,9 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Experience, ExperienceService } from '../../core/services/experience';
+import { RevealDirective } from '../../shared/directives/reveal';
 
 @Component({
   selector: 'app-experience',
-  imports: [],
+  imports: [RevealDirective],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })
