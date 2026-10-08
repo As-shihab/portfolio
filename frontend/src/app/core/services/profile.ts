@@ -20,8 +20,8 @@ export class ProfileService {
   // Mock data for now, replace with HttpClient call later
   private mockProfile: Profile = {
     name: 'Abdus Salam Shihab',
-    title: 'Software Developer',
-    bio: `Software Developer focused on ERP and MES products, Electron desktop systems, Angular and React frontends, and backend services with Node.js, Laravel, NestJS, Prisma, and OData v4.`,
+    title: 'Software Engineer',
+    bio: `Software Engineer focused on ERP and MES products, Electron desktop systems, Angular and React frontends, and backend services with Node.js, Laravel, NestJS, Prisma, and OData v4.`,
     email: 'study.shihab@gmail.com',
     phone: '+880 1604-279418',
     location: 'Dhaka, Bangladesh',
